@@ -35,21 +35,32 @@ export class AppComponent implements OnInit {
     var pole2Blocks = [];
     var pole3Blocks = [];
     var dragedElement = null;
+    var counter = 0;
     // scale
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.scale.pageAlignHorizontally = true;
     this.game.scale.pageAlignVertically = true;
     this.game.scale.parentIsWindow = true;
-
+    
     // create a new sprite to show the image on the screen
     var background = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, "background");
     background.anchor.setTo(0.5, 0.5);
-
+    
     var concrete = this.game.add.sprite(this.game.world.centerX, this.game.world.height, "concrete");
     var temp = background.width / concrete.height;
     concrete.anchor.setTo(0.5, 0.5);
     concrete.angle = -90;
     concrete.scale.setTo(0.1, temp);
+    
+    //score
+    var style = {
+      font: 'bold 4vw Arial',
+      fill: '#D0171B',
+      align: "center"
+    }
+    var score = this.game.add.text(this.game.world.centerX * 0.5, this.game.world.height * 0.1, '0', style);
+    score.anchor.setTo(2,0.5);
+    score.visible = true;
 
     // poles
     var pole1 = this.game.add.sprite(this.game.world.centerX * 0.5, this.game.world.height, "pole");
@@ -194,6 +205,8 @@ export class AppComponent implements OnInit {
               block1.input.enableDrag();
             }
           }
+          counter += 1;
+          score.text = counter.toString();
         }
       }
       console.log("1", pole1Blocks, pole2Blocks, pole3Blocks);
@@ -339,6 +352,8 @@ export class AppComponent implements OnInit {
               block1.input.enableDrag();
             }
           }
+          counter += 1;
+          score.text = counter.toString();
         }
       }
       console.log("2", pole1Blocks, pole2Blocks, pole3Blocks);
@@ -487,6 +502,8 @@ export class AppComponent implements OnInit {
               block1.input.enableDrag();
             }
           }
+          counter += 1;
+          score.text = counter.toString();
         }
       }
       console.log("3", pole1Blocks, pole2Blocks, pole3Blocks);
