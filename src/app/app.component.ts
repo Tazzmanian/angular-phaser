@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
     
     //score
     var style = {
-      font: 'bold 4vw Arial',
+      font: 'bold 6vw Arial',
       fill: '#D0171B',
       align: "center"
     }
