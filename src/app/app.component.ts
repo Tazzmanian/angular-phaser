@@ -507,6 +507,34 @@ export class AppComponent implements OnInit {
         }
       }
       console.log("3", pole1Blocks, pole2Blocks, pole3Blocks);
+      if(pole3Blocks.length == 3) {
+        var style = {
+          font: 'bold 20vw Times',
+          fill: '#D0171B',
+          align: "center"
+        }
+        var end = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'WIN', style);
+        end.anchor.setTo(0.5);
+        end.visible = true;
+        block1.input.disableDrag();
+        block2.input.disableDrag();
+        block3.input.disableDrag();
+        
+        var style1 = {
+          font: 'bold 4vw Times',
+          fill: '#D0171B',
+          align: "center"
+        }
+        var replay = this.game.add.text(this.game.world.centerX * 1.5, this.game.world.height * 0.1, 'REPLAY', style1);
+        replay.anchor.setTo(0.5);
+        replay.visible = true;
+        // replay.input.enabled = true;
+        replay.inputEnabled = true;
+        replay.events.onInputDown.add(() => {
+          // console.log("replay")
+          this.game.state.restart();
+        });
+      }
     });
     block3.events.onDragUpdate.add(() => {
       block1.input.disableDrag();
